@@ -1,29 +1,37 @@
 ---
 const projects = [
   {
-    title: 'Project One',
-    description: 'Short description of what this project does and the problem it solves.',
-    thumbnail: '/projects/project-one.jpg',
-    tags: ['Laravel', 'Docker'],
-    github: 'https://github.com/penicili/project-one',
+    title: 'WhenYh',
+    description: 'When2meet clone built with React.',
+    thumbnail: '/headshot.jpg',
+    tags: ['React', 'Typescript'],
+    github: 'https://github.com/penicili/when-yh',
     demo: null,
   },
   {
-    title: 'Project Two',
-    description: 'Short description of what this project does and the problem it solves.',
-    thumbnail: '/projects/project-two.jpg',
-    tags: ['FastAPI', 'Ansible'],
-    github: 'https://github.com/penicili/project-two',
-    demo: 'https://example.com',
-  },
-  {
-    title: 'Project Three',
-    description: 'Short description of what this project does and the problem it solves.',
-    thumbnail: '/projects/project-three.jpg',
-    tags: ['Express', 'Proxmox'],
-    github: 'https://github.com/penicili/project-three',
+    title: 'Auth Service',
+    description: 'Authentication service built with ExpressJS.',
+    thumbnail: '/headshot.jpg',
+    tags: ['Express', 'MongoDB', 'TypeScript'],
+    github: 'https://github.com/penicili/auth-service/',
     demo: null,
   },
+  {
+    title: 'Learning Analytics Dashboard - backend',
+    description: 'Backend for my capstone project, built with ExpressJS.',
+    thumbnail: '/headshot.jpg',
+    tags: ['Python', 'FastAPI'],
+    github: 'https://github.com/penicili/capstone-backend',
+    demo: null,
+  },
+  {
+    title: 'CTF Proxmoxer',
+    description: 'Backend for my final project, built with FastAPI, to manage CTF VMs on Proxmox VE.',
+    thumbnail: '/headshot.jpg',
+    tags: ['Python', 'FastAPI', 'Proxmox'],
+    github: 'https://github.com/penicili/ctf-proxmoxer',
+    demo: null,
+  }
 ];
 ---
 
@@ -37,12 +45,12 @@ const projects = [
       <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
         Things I&rsquo;ve built
       </h2>
-      <a
+      <!-- <a
         href="/projects"
         class="hidden text-sm text-zinc-500 underline-offset-4 transition hover:text-indigo-400 hover:underline sm:block"
       >
         View all →
-      </a>
+      </a> -->
     </div>
 
     <!-- Project grid -->
@@ -59,9 +67,7 @@ const projects = [
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
             />
             <!-- Fallback placeholder -->
-            <div class="placeholder absolute inset-0 hidden items-center justify-center bg-zinc-800">
-              <span class="font-mono text-2xl text-zinc-600">{project.title[0]}</span>
-            </div>
+
           </div>
 
           <!-- Content -->
