@@ -1,0 +1,64 @@
+---
+const techStack: Record<string, string[]> = {
+  'Web Dev': ['Laravel', 'Express', 'FastAPI'],
+  'DevOps': ['Docker', 'GitHub Actions', 'Ansible'],
+  'Infrastructure': ['Proxmox', 'Linux'],
+};
+---
+
+<section class="relative flex items-center justify-center px-6 py-28">
+  <div class="flex w-full max-w-5xl flex-col gap-16 lg:flex-row lg:items-start">
+
+    <!-- Left: bio -->
+    <div class="flex-1">
+      <p class="mb-4 font-mono text-xs font-medium uppercase tracking-widest text-zinc-500">
+        // about me
+      </p>
+      <h2 class="mb-8 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        Who I am
+      </h2>
+
+      <div class="space-y-4 text-lg leading-relaxed text-zinc-400">
+        <p>
+          I&rsquo;m Katon Bagaskoro, a final-year Information Systems student who is
+          still figuring out which corner of tech myself belongs to &mdash; so I explore
+          all of them. Well, most of them.
+        </p>
+        <p>
+          I build small projects as my way of learning, forcing me to understand
+          concepts that tutorials never fully cover &mdash; let curiosity lead the way.
+        </p>
+      </div>
+
+      <a
+        href="/CV-ATS-KATON BAGASKORO.pdf"
+        download
+        class="mt-10 inline-flex items-center gap-2 rounded-lg border border-indigo-500/40 bg-indigo-500/10 px-5 py-2.5 text-sm font-medium text-indigo-300 transition hover:border-indigo-400/70 hover:bg-indigo-500/20 hover:text-indigo-200"
+      >
+        Download CV
+      </a>
+    </div>
+
+    <!-- Right: tech stack -->
+    <div class="w-full lg:w-80 xl:w-96">
+      <p class="mb-4 font-mono text-xs font-medium uppercase tracking-widest text-zinc-500">
+        // tech & tools
+      </p>
+      <div class="space-y-6">
+        {Object.entries(techStack).map(([category, items]) => (
+          <div>
+            <p class="mb-2 text-sm font-medium text-zinc-400">{category}</p>
+            <div class="flex flex-wrap gap-2">
+              {items.map((item) => (
+                <span class="rounded-md border border-zinc-700 bg-zinc-800/60 px-3 py-1 text-sm text-zinc-300">
+                  {item}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,159 @@
+---
+const exploring = ['WebDev', 'DevOps', 'Infrastructure'];
+
+const navLinks = [
+  // { label: 'Blogs', href: '/blogs' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Contact', href: '#about' },
+  { label: 'Resume', href: '/CV-ATS-KATON BAGASKORO.pdf' },
+];
+---
+
+<section class="hero relative flex min-h-screen items-center justify-center px-6 py-20">
+    <div class="content relative z-10 flex w-full max-w-5xl flex-col items-center gap-16 lg:flex-row lg:items-center">
+
+    <!-- Left: text -->
+    <div class="flex-1">
+      <!-- Terminal tagline -->
+      <p class="mb-8 flex items-center gap-2 font-mono text-sm text-indigo-400">
+        <span class="text-indigo-500">❯</span>
+        Building to learn, learning to build
+        <span class="cursor inline-block h-4 w-2 bg-indigo-400"></span>
+      </p>
+
+      <!-- Headline -->
+      <h1 class="mb-6 text-6xl font-bold tracking-tight text-white sm:text-7xl">
+        Hi, I'm
+        <br />
+        <span class="gradient-name">Bagas</span>
+      </h1>
+
+      <!-- Bio -->
+      <p class="mb-10 max-w-xl text-lg leading-relaxed text-zinc-400">
+        I tinker with homelab, ship small projects and document what I learn.
+      </p>
+
+      <!-- Currently exploring -->
+      <div class="mb-12">
+        <span class="mb-3 block font-mono text-xs font-medium uppercase tracking-widest text-zinc-500">
+          // currently exploring
+        </span>
+        <div class="flex flex-wrap gap-2">
+          {
+            exploring.map((tag) => (
+              <span class="rounded-full border border-indigo-500/30 bg-indigo-500/10 px-4 py-1.5 text-sm text-indigo-300 backdrop-blur-sm transition hover:border-indigo-400/60 hover:bg-indigo-500/20">
+                {tag}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Nav links -->
+      <nav class="flex flex-wrap items-center gap-x-8 gap-y-3">
+        {
+          navLinks.map((link) => (
+            <a
+              href={link.href}
+              class="nav-link group flex items-center gap-2 text-zinc-400 transition-all duration-200 hover:text-white"
+            >
+              <span class="transition-transform duration-200 group-hover:translate-x-1">##</span>
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <!-- Right: photo -->
+    <div class="photo-wrapper shrink-0">
+      <div class="photo-ring">
+        <img
+          src="/headshot.jpg"
+          alt="Bagas"
+          class="photo-img"
+          width="280"
+          height="280"
+        />
+      </div>
+      <!-- Glow behind photo -->
+      <div class="photo-glow"></div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .gradient-name {
+    background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #38bdf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Photo */
+  .photo-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .photo-ring {
+    position: relative;
+    z-index: 1;
+    padding: 3px;
+    border-radius: 1.25rem;
+    background: linear-gradient(135deg, #818cf8, #a78bfa, #38bdf8);
+  }
+
+  .photo-img {
+    display: block;
+    width: 280px;
+    height: 280px;
+    border-radius: 1rem;
+    object-fit: cover;
+    object-position: top center;
+    background-color: #18181b;
+  }
+
+  .photo-glow {
+    position: absolute;
+    inset: -24px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at center, #6366f1 0%, transparent 70%);
+    opacity: 0.2;
+    filter: blur(24px);
+    z-index: 0;
+    animation: pulse-glow 4s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { opacity: 0.15; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.08); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  @keyframes fadein {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .cursor {
+    animation: blink 1.1s step-end infinite;
+  }
+
+  .content {
+    animation: fadein 0.7s ease-out both;
+  }
+</style>
