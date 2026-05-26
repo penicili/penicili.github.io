@@ -1,37 +1,41 @@
 ---
 const projects = [
   {
-    title: 'WhenYh',
-    description: 'When2meet clone built with React.',
-    thumbnail: '/headshot.jpg',
-    tags: ['React', 'Typescript'],
-    github: 'https://github.com/penicili/when-yh',
-    demo: 'https://when-yh.vercel.app/',
+    title: 'CTF Proxmoxer',
+    description: 'Backend for my final project, built with FastAPI, to manage CTF VMs on Proxmox VE.',
+    tags: ['Python', 'FastAPI', 'Proxmox'],
+    github: 'https://github.com/penicili/ctf-proxmoxer',
+    demo: null,
+  },
+  {
+    title: 'N',
+    description: 'Landing and store page for a minecraft server, built with astro',
+    tags: ['Astro'],
+    github: 'https://github.com/penicili/night',
+    demo: 'https://nightnetwork-dev.netlify.app/',
   },
   {
     title: 'Auth Service',
     description: 'Authentication service built with ExpressJS.',
-    thumbnail: '/headshot.jpg',
     tags: ['Express', 'MongoDB', 'TypeScript'],
     github: 'https://github.com/penicili/auth-service/',
     demo: null,
   },
   {
-    title: 'Learning Analytics Dashboard - backend',
+    title: 'Learning Analytics Dashboard',
     description: 'Backend for my capstone project, built with FastAPI.',
-    thumbnail: '/headshot.jpg',
     tags: ['Python', 'FastAPI'],
     github: 'https://github.com/penicili/capstone-backend',
     demo: null,
   },
   {
-    title: 'CTF Proxmoxer',
-    description: 'Backend for my final project, built with FastAPI, to manage CTF VMs on Proxmox VE.',
-    thumbnail: '/headshot.jpg',
-    tags: ['Python', 'FastAPI', 'Proxmox'],
-    github: 'https://github.com/penicili/ctf-proxmoxer',
+    title: 'Freshleaf Laundry',
+    description: 'Simple laundry business page built with laravel',
+    tags: ['Laravel'],
+    github: 'https://github.com/FreshLeaf-Laundry/FreshLeaf',
     demo: null,
   }
+
 ];
 ---
 
@@ -41,31 +45,22 @@ const projects = [
     <p class="mb-4 font-mono text-xs font-medium uppercase tracking-widest text-zinc-500">
       // projects
     </p>
-    <div class="mb-12 flex items-end justify-between">
-      <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
-        Things I&rsquo;ve built
-      </h2>
-      <!-- <a
-        href="/projects"
-        class="hidden text-sm text-zinc-500 underline-offset-4 transition hover:text-indigo-400 hover:underline sm:block"
-      >
-        View all →
-      </a> -->
-    </div>
+    <h2 class="mb-12 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+      Some of my recent work.
+    </h2>
 
-    <!-- Project grid -->
-    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-2">
       {projects.map((project) => (
-        <article class="project-card group flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition hover:border-zinc-700">
+        <article class="group flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 transition duration-200 hover:border-zinc-600">
 
-          <!-- Thumbnail -->
-          <div class="thumbnail-wrap relative overflow-hidden bg-zinc-800">
-            <img
-              src={project.thumbnail}
-              alt={project.title}
-              class="h-48 w-full object-cover transition duration-300 group-hover:scale-105"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-            />
+          <!-- Terminal header bar -->
+    
+          <div class="flex items-center border-b border-zinc-800 bg-zinc-800/50 px-4 py-3">
+            <div class="flex items-center gap-1.5">
+              <span class="h-2.5 w-2.5 rounded-full bg-zinc-600"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-zinc-600"></span>
+              <span class="h-2.5 w-2.5 rounded-full bg-zinc-600"></span>
+            </div>
 
           </div>
 
@@ -117,16 +112,6 @@ const projects = [
         </article>
       ))}
     </div>
-
-    <!-- Mobile: view all link -->
-    <!-- <div class="mt-8 text-center sm:hidden">
-      <a
-        href="/projects"
-        class="text-sm text-zinc-500 underline-offset-4 transition hover:text-indigo-400 hover:underline"
-      >
-        View all →
-      </a>
-    </div> -->
 
   </div>
 </section>
