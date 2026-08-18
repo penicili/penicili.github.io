@@ -181,16 +181,46 @@ const navLinks = [
   const line2El  = document.getElementById('hero-line2')  as HTMLElement;
   const bodyEl   = document.getElementById('hero-body')   as HTMLElement;
 
-  setTimeout(() => {
-    // Headline: "Hi, I'm" → jeda → "Bagas" → reveal body
-    typeText(line1El, "Hi, I'm", 75, () => {
-      setTimeout(() => {
-        typeText(line2El, 'Bagas', 110, () => {
-          setTimeout(() => bodyEl.classList.add('visible'), 200);
+function deleteText(el: HTMLElement, speed: number, onDone?: () => void) {
+  const tick = () => {
+    const current = el.textContent ?? '';
+    if (current.length > 0) {
+      el.textContent = current.slice(0, -1);
+      setTimeout(tick, speed);
+    } else {
+      onDone?.();
+    }
+  };
+  tick();
+}
+
+function cycleNames(el: HTMLElement, names: string[], typeSpeed: number, deleteSpeed: number, holdMs: number) {
+  let index = 0;
+  const next = () => {
+    index = (index + 1) % names.length;
+    setTimeout(() => {
+      deleteText(el, deleteSpeed, () => {
+        typeText(el, names[index], typeSpeed, () => {
+          setTimeout(next, holdMs);
         });
-      }, 150);
-    });
-    // Tagline paralel
-    typeText(taglineEl, 'Building to learn, learning to build', 38);
-  }, 700);
+      });
+    }, holdMs);
+  };
+  next();
+}
+
+setTimeout(() => {
+  // Headline: "Hi, I'm" → jeda → "Bagas" → reveal body
+  typeText(line1El, "Hi, I'm", 75, () => {
+    setTimeout(() => {
+      typeText(line2El, 'Bagas', 110, () => {
+        setTimeout(() => bodyEl.classList.add('visible'), 200);
+        // Setelah muncul, nama bergantian antara "Bagas" dan "Katon Bagaskoro"
+        cycleNames(line2El, ['Bagas', 'Katon Bagaskoro'], 90, 50, 2200);
+      });
+    }, 150);
+  });
+  // Tagline paralel
+  typeText(taglineEl, 'Building to learn, learning to build', 38);
+}, 700);
 </script>
