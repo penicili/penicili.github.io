@@ -23,10 +23,12 @@ const navLinks = [
       </p>
 
       <!-- Headline -->
-      <h1 class="mb-6 text-6xl font-bold tracking-tight text-white sm:text-7xl">
+      <h1 class="mb-6 text-6xl font-bold tracking-tight text-white sm:text-7xl leading-tight">
         <span id="hero-line1"></span>
         <br />
-        <span id="hero-line2" class="gradient-name"></span>
+        <span class="name-wrap">
+          <span id="hero-line2" class="gradient-name"></span>
+        </span>
       </h1>
 
       <!-- Bio, tags, nav — disembunyikan sampai headline selesai diketik -->
@@ -89,9 +91,14 @@ const navLinks = [
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+  }
+
+  /* wrapper yang menahan tinggi baris, terpisah dari elemen yang di-clip */
+  .name-wrap {
     display: inline-block;
-    min-height: 1em;
-    min-width: 1em;
+    min-height: 1.3em;   /* ruang tetap, tidak collapse walau teks kosong */
+    line-height: 1.3;    /* cukup longgar untuk descender g/j/y/p */
+    vertical-align: top;
   }
 
   .hero-body {
