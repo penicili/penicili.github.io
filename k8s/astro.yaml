@@ -15,10 +15,11 @@ spec:
         app: astro
     spec:
       containers:
-      - name: astro
-        image: 192.168.1.150:5000/penicili/portoapp
-        ports:
-        - containerPort: 4321
+        - name: astro
+          image: penicili/portoapp:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 4321
 ---
 kind: Service
 apiVersion: v1
@@ -27,7 +28,7 @@ metadata:
 spec:
   selector:
     app: astro
-  type:  ClusterIP
+  type: ClusterIP
   ports:
-  - port:  4321
-    targetPort:  4321
+    - port: 4321
+      targetPort: 4321

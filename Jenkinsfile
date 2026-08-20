@@ -2,8 +2,7 @@ pipeline {
     agent any
 
     environment {
-        REGISTRY = '192.168.1.150:5000'
-        IMAGE = '192.168.1.150:5000/penicili/portoapp'
+        IMAGE = 'penicili/portoapp'
         IMAGE_TAG = "${BUILD_NUMBER}"
     }
 
@@ -18,12 +17,26 @@ pipeline {
             }
         }
 
-        stage('Push image') {
+        stage('Push image to Docker Hub') {
             steps {
-                sh '''
-                    docker push "$IMAGE:$IMAGE_TAG"
-                    docker push "$IMAGE:latest"
-                '''
+                withCredentials([
+                    usernamePassword(
+                        credentialsId: 'dockerhub-pat',
+                        usernameVariable: 'DOCKERHUB_USERNAME',
+                        passwordVariable: 'DOCKERHUB_TOKEN'
+                    )
+                ]) {
+                    sh '''
+                        echo "$DOCKERHUB_TOKEN" | docker login \
+                          --username "$DOCKERHUB_USERNAME" \
+                          --password-stdin
+
+                        docker push "$IMAGE:$IMAGE_TAG"
+                        docker push "$IMAGE:latest"
+
+                        docker logout
+                    '''
+                }
             }
         }
     }
