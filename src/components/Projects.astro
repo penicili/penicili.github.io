@@ -96,9 +96,9 @@ const projects: Project[] = [
           >
             <div class="project-card__chrome">
               <div class="flex items-center gap-1.5">
-                <span class="h-2.5 w-2.5 rounded-full bg-rose-400/70" />
-                <span class="h-2.5 w-2.5 rounded-full bg-amber-300/70" />
-                <span class="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
+                <span class="h-2.5 w-2.5 rounded-full bg-(--eva-orange)" />
+                <span class="h-2.5 w-2.5 rounded-full bg-(--eva-panel)" />
+                <span class="h-2.5 w-2.5 rounded-full bg-(--eva-green)" />
               </div>
               <span class="font-mono text-xs text-zinc-500">
                 {String(index + 1).padStart(2, "0")} / {project.slug}
@@ -173,12 +173,12 @@ const projects: Project[] = [
     min-height: 22rem;
     flex-direction: column;
     overflow: hidden;
-    border: 1px solid #27272a;
+    border: 1px solid rgb(118 88 153 / 0.55);
     border-radius: 0.85rem;
     background: linear-gradient(
       145deg,
-      rgb(39 39 42 / 0.72),
-      rgb(24 24 27 / 0.96)
+      rgb(118 88 153 / 0.22),
+      rgb(0 0 0 / 0.96)
     );
     transition:
       border-color 0.25s ease,
@@ -187,11 +187,11 @@ const projects: Project[] = [
   }
 
   .project-card:hover {
-    border-color: rgb(129 140 248 / 0.55);
+    border-color: rgb(65 187 66 / 0.8);
     background: linear-gradient(
       145deg,
-      rgb(49 46 129 / 0.28),
-      rgb(24 24 27 / 0.98)
+      rgb(232 121 12 / 0.15),
+      rgb(0 0 0 / 0.98)
     );
     transform: translateY(-0.25rem);
   }
@@ -199,12 +199,6 @@ const projects: Project[] = [
   .project-card--featured {
     grid-row: span 2;
     min-height: 45rem;
-    border-color: rgb(99 102 241 / 0.45);
-    background: linear-gradient(
-      150deg,
-      rgb(49 46 129 / 0.34),
-      rgb(24 24 27 / 0.96) 55%
-    );
   }
 
   .project-card__chrome {
@@ -213,7 +207,7 @@ const projects: Project[] = [
     justify-content: space-between;
     gap: 1rem;
     border-bottom: 1px solid rgb(63 63 70 / 0.75);
-    background: rgb(39 39 42 / 0.58);
+    background: rgb(118 88 153 / 0.24);
     padding: 0.8rem 1rem;
   }
 
@@ -229,7 +223,7 @@ const projects: Project[] = [
     overflow: hidden;
     aspect-ratio: 16 / 7;
     border-bottom: 1px solid rgb(63 63 70 / 0.75);
-    background: #18181b;
+    background: #000000;
   }
 
   .project-card__media img {
@@ -245,7 +239,7 @@ const projects: Project[] = [
 
   .project-card h3 {
     margin-bottom: 0.75rem;
-    color: #fafafa;
+    color: var(--eva-ink);
     font-size: 1.45rem;
     font-weight: 600;
   }
@@ -258,7 +252,7 @@ const projects: Project[] = [
 
   .project-card p {
     max-width: 34rem;
-    color: #a1a1aa;
+    color: var(--eva-muted);
     font-size: 0.9rem;
     line-height: 1.7;
   }
@@ -276,12 +270,12 @@ const projects: Project[] = [
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    color: #a1a1aa;
+    color: var(--eva-muted);
     transition: color 0.2s ease;
   }
 
   .project-card__links a:hover {
-    color: #c7d2fe;
+    color: var(--eva-green);
   }
 
   @media (max-width: 640px) {

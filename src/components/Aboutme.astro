@@ -1,17 +1,24 @@
 ---
 const techStack: Record<string, string[]> = {
-  'Web Dev': ['Laravel', 'Express', 'FastAPI'],
-  'DevOps': ['Docker', 'Ansible', 'Jenkins', 'Kubernetes'],
-  'Infrastructure': ['Proxmox', 'Linux'],
+  "Web Dev": ["Laravel", "Express", "FastAPI"],
+  DevOps: ["Docker", "Ansible", "Jenkins", "Kubernetes", "ArgoCD"],
+  Infrastructure: ["Proxmox", "Linux"],
 };
 ---
 
-<section id="about" class="relative flex items-center justify-center px-6 py-28">
-  <div data-animate class="flex w-full max-w-5xl flex-col gap-16 lg:flex-row lg:items-start">
-
+<section
+  id="about"
+  class="relative flex items-center justify-center px-6 py-28"
+>
+  <div
+    data-animate
+    class="flex w-full max-w-5xl flex-col gap-16 lg:flex-row lg:items-start"
+  >
     <!-- Left: bio -->
     <div class="flex-1">
-      <p class="mb-4 font-mono text-xs font-medium uppercase tracking-widest text-zinc-500">
+      <p
+        class="mb-4 font-mono text-xs font-medium uppercase tracking-widest text-zinc-500"
+      >
         // about me
       </p>
       <h2 class="mb-8 text-4xl font-bold tracking-tight text-white sm:text-5xl">
@@ -20,20 +27,20 @@ const techStack: Record<string, string[]> = {
 
       <div class="space-y-4 text-lg leading-relaxed text-zinc-400">
         <p>
-          I'm Katon Bagaskoro, an Information Systems major
-          who is still figuring out which corner of tech I belong to and exploring them
+          I'm Katon Bagaskoro, an Information Systems major who is still
+          figuring out which corner of tech I belong to and exploring them
         </p>
         <p>
-          I build small projects as my way of learning, forcing myself to understand
-          concepts that class curriculum doesn't fully cover. I also hold a BNSP certification
-          as a Cybersecurity Analyst
+          I build small projects as my way of learning, forcing myself to
+          understand concepts that class curriculum doesn't fully cover. I also
+          hold a BNSP certification as a Cybersecurity Analyst
         </p>
       </div>
 
       <a
         href="/CV-ATS-KATON BAGASKORO.pdf"
         download
-        class="mt-10 inline-flex items-center gap-2 rounded-lg border border-indigo-500/40 bg-indigo-500/10 px-5 py-2.5 text-sm font-medium text-indigo-300 transition hover:border-indigo-400/70 hover:bg-indigo-500/20 hover:text-indigo-200"
+        class="mt-10 inline-flex items-center gap-2 rounded-lg border border-(--eva-panel)/70 bg-(--eva-panel)/20 px-5 py-2.5 text-sm font-medium text-(--eva-purple) transition hover:border-(--eva-green) hover:bg-(--eva-green)/15 hover:text-(--eva-green)"
       >
         Download CV
       </a>
@@ -41,24 +48,27 @@ const techStack: Record<string, string[]> = {
 
     <!-- Right: tech stack -->
     <div class="w-full lg:w-80 xl:w-96">
-      <p class="mb-4 font-mono text-xs font-medium uppercase tracking-widest text-zinc-500">
+      <p
+        class="mb-4 font-mono text-xs font-medium uppercase tracking-widest text-zinc-500"
+      >
         // tech & tools
       </p>
       <div class="space-y-6">
-        {Object.entries(techStack).map(([category, items]) => (
-          <div>
-            <p class="mb-2 text-sm font-medium text-zinc-400">{category}</p>
-            <div class="flex flex-wrap gap-2">
-              {items.map((item) => (
-                <span class="rounded-md border border-zinc-700 bg-zinc-800/60 px-3 py-1 text-sm text-zinc-300">
-                  {item}
-                </span>
-              ))}
+        {
+          Object.entries(techStack).map(([category, items]) => (
+            <div>
+              <p class="mb-2 text-sm font-medium text-zinc-400">{category}</p>
+              <div class="flex flex-wrap gap-2">
+                {items.map((item) => (
+                  <span class="rounded-md border border-zinc-700 bg-zinc-800/60 px-3 py-1 text-sm text-zinc-300">
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        }
       </div>
     </div>
-
   </div>
 </section>

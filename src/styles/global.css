@@ -1,4 +1,35 @@
 @import "tailwindcss";
+
+:root {
+  --eva-void: #000000;
+  --eva-panel: #765899;
+  --eva-panel-soft: #b797db;
+  --eva-violet: #765899;
+  --eva-purple: #b797db;
+  --eva-green: #41bb42;
+  --eva-orange: #e8790c;
+  --eva-ink: #ffffff;
+  --eva-muted: #b797db;
+}
+
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  background: var(--eva-void);
+  color: var(--eva-ink);
+}
+
+body {
+  background:
+    linear-gradient(rgb(0 0 0 / 0.94), rgb(0 0 0 / 0.98)),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 39px,
+      rgb(65 187 66 / 0.035) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 39px,
+      rgb(232 121 12 / 0.025) 40px
+    ),
+    var(--eva-void);
 }

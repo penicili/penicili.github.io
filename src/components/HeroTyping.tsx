@@ -104,10 +104,10 @@ export default function HeroTyping() {
 
   return (
     <>
-      <p className="mb-8 flex items-center gap-2 font-mono text-sm text-indigo-400">
-        <span className="text-indigo-500">❯</span>
+      <p className="mb-8 flex items-center gap-2 font-mono text-sm text-(--eva-green)">
+        <span className="text-(--eva-orange)">❯</span>
         <span>{reducedMotion ? tagline : taglineText}</span>
-        {!reducedMotion && <span className="cursor inline-block h-4 w-2 bg-indigo-400" />}
+        {!reducedMotion && <span className="cursor inline-block h-4 w-2 bg-(--eva-green)" />}
       </p>
 
       <h1 className="mb-6 text-6xl font-bold leading-tight tracking-tight text-white sm:text-7xl">
