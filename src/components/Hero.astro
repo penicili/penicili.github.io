@@ -1,35 +1,26 @@
 ---
-const exploring = ['WebDev', 'DevOps', 'Infrastructure'];
+import HeroTyping from "./HeroTyping.tsx";
+
+const exploring = ["Web Development", "DevOps", "Self-hosting"];
 
 const navLinks = [
   // { label: 'Blogs', href: '/blogs' },
-  { label: 'About Me', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
-  { label: 'Resume', href: '/CV-ATS-KATON BAGASKORO.pdf' },
+  { label: "About Me", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "#contact" },
+  { label: "Resume", href: "/CV-ATS-KATON BAGASKORO.pdf" },
 ];
 ---
 
-<section class="hero relative flex min-h-screen items-center justify-center px-6 py-20">
-  <div class="content relative z-10 flex w-full max-w-5xl flex-col items-center gap-16 lg:flex-row lg:items-center">
-
+<section
+  class="hero relative flex min-h-screen items-center justify-center px-6 py-20"
+>
+  <div
+    class="content relative z-10 flex w-full max-w-5xl flex-col items-center gap-16 lg:flex-row lg:items-center"
+  >
     <!-- Left: text -->
     <div class="flex-1">
-      <!-- Terminal tagline -->
-      <p class="mb-8 flex items-center gap-2 font-mono text-sm text-indigo-400">
-        <span class="text-indigo-500">❯</span>
-        <span id="hero-tagline"></span>
-        <span class="cursor inline-block h-4 w-2 bg-indigo-400"></span>
-      </p>
-
-      <!-- Headline -->
-      <h1 class="mb-6 text-6xl font-bold tracking-tight text-white sm:text-7xl leading-tight">
-        <span id="hero-line1"></span>
-        <br />
-        <span class="name-wrap">
-          <span id="hero-line2" class="gradient-name"></span>
-        </span>
-      </h1>
+      <HeroTyping client:load />
 
       <!-- Bio, tags, nav — disembunyikan sampai headline selesai diketik -->
       <div id="hero-body" class="hero-body">
@@ -38,7 +29,9 @@ const navLinks = [
         </p>
 
         <div class="mb-12">
-          <span class="mb-3 block font-mono text-xs font-medium uppercase tracking-widest text-zinc-500">
+          <span
+            class="mb-3 block font-mono text-xs font-medium uppercase tracking-widest text-zinc-500"
+          >
             // currently exploring
           </span>
           <div class="flex flex-wrap gap-2">
@@ -59,7 +52,9 @@ const navLinks = [
                 href={link.href}
                 class="nav-link group flex items-center gap-2 text-zinc-400 transition-all duration-200 hover:text-white"
               >
-                <span class="transition-transform duration-200 group-hover:translate-x-1">##</span>
+                <span class="transition-transform duration-200 group-hover:translate-x-1">
+                  ##
+                </span>
                 {link.label}
               </a>
             ))
@@ -81,12 +76,11 @@ const navLinks = [
       </div>
       <div class="photo-glow"></div>
     </div>
-
   </div>
 </section>
 
 <style>
-  .gradient-name {
+  :global(.gradient-name) {
     background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #38bdf8 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -94,17 +88,19 @@ const navLinks = [
   }
 
   /* wrapper yang menahan tinggi baris, terpisah dari elemen yang di-clip */
-  .name-wrap {
+  :global(.name-wrap) {
     display: inline-block;
-    min-height: 1.3em;   /* ruang tetap, tidak collapse walau teks kosong */
-    line-height: 1.3;    /* cukup longgar untuk descender g/j/y/p */
+    min-height: 1.3em; /* ruang tetap, tidak collapse walau teks kosong */
+    line-height: 1.3; /* cukup longgar untuk descender g/j/y/p */
     vertical-align: top;
   }
 
   .hero-body {
     opacity: 0;
     transform: translateY(16px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition:
+      opacity 0.6s ease,
+      transform 0.6s ease;
   }
 
   .hero-body.visible {
@@ -149,18 +145,36 @@ const navLinks = [
   }
 
   @keyframes pulse-glow {
-    0%, 100% { opacity: 0.15; transform: scale(1); }
-    50% { opacity: 0.3; transform: scale(1.08); }
+    0%,
+    100% {
+      opacity: 0.15;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(1.08);
+    }
   }
 
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
   }
 
   @keyframes fadein {
-    from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .cursor {
@@ -173,64 +187,8 @@ const navLinks = [
 </style>
 
 <script>
-  function typeText(el: HTMLElement, text: string, speed: number, onDone?: () => void) {
-    let i = 0;
-    const tick = () => {
-      if (i < text.length) {
-        el.textContent += text[i++];
-        setTimeout(tick, speed);
-      } else {
-        onDone?.();
-      }
-    };
-    tick();
-  }
+  const bodyEl = document.getElementById("hero-body");
+  const revealBody = () => bodyEl?.classList.add("visible");
 
-  const taglineEl = document.getElementById('hero-tagline') as HTMLElement;
-  const line1El  = document.getElementById('hero-line1')  as HTMLElement;
-  const line2El  = document.getElementById('hero-line2')  as HTMLElement;
-  const bodyEl   = document.getElementById('hero-body')   as HTMLElement;
-
-function deleteText(el: HTMLElement, speed: number, onDone?: () => void) {
-  const tick = () => {
-    const current = el.textContent ?? '';
-    if (current.length > 0) {
-      el.textContent = current.slice(0, -1);
-      setTimeout(tick, speed);
-    } else {
-      onDone?.();
-    }
-  };
-  tick();
-}
-
-function cycleNames(el: HTMLElement, names: string[], typeSpeed: number, deleteSpeed: number, holdMs: number) {
-  let index = 0;
-  const next = () => {
-    index = (index + 1) % names.length;
-    setTimeout(() => {
-      deleteText(el, deleteSpeed, () => {
-        typeText(el, names[index], typeSpeed, () => {
-          setTimeout(next, holdMs);
-        });
-      });
-    }, holdMs);
-  };
-  next();
-}
-
-setTimeout(() => {
-  // Headline: "Hi, I'm" → jeda → "Bagas" → reveal body
-  typeText(line1El, "Hi, I'm", 75, () => {
-    setTimeout(() => {
-      typeText(line2El, 'Bagas', 110, () => {
-        setTimeout(() => bodyEl.classList.add('visible'), 200);
-        // Setelah muncul, nama bergantian antara "Bagas" dan "Katon Bagaskoro"
-        cycleNames(line2El, ['Bagas', 'Katon Bagaskoro'], 90, 50, 2200);
-      });
-    }, 150);
-  });
-  // Tagline paralel
-  typeText(taglineEl, 'Building to learn, learning to build', 38);
-}, 700);
+  document.addEventListener("hero-typing-complete", revealBody, { once: true });
 </script>
