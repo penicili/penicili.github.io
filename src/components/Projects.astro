@@ -287,7 +287,19 @@ const projects: Project[] = [
 
   @media (max-width: 640px) {
     .projects-grid {
-      grid-template-columns: 1fr;
+      display: flex;
+      overflow-x: auto;
+      gap: 1rem;
+      padding: 0.25rem 0.25rem 1rem;
+      scroll-snap-type: x mandatory;
+      scrollbar-color: var(--eva-green) rgb(63 63 70 / 0.5);
+      scrollbar-width: thin;
+    }
+
+    .project-card {
+      flex: 0 0 82vw;
+      min-height: 30rem;
+      scroll-snap-align: start;
     }
 
     .project-card--featured {
