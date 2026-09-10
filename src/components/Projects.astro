@@ -107,7 +107,14 @@ const projects: Project[] = [
 
             {project.image && (
               <div class="project-card__media">
-                <img src={project.image} alt={`${project.title} preview`} />
+                <a
+                  href={project.image}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${project.title} preview in a new tab`}
+                >
+                  <img src={project.image} alt={`${project.title} preview`} />
+                </a>
               </div>
             )}
 
