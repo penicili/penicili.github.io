@@ -1,5 +1,6 @@
 ---
 import HeroTyping from "./HeroTyping.tsx";
+import ProfilePhoto from "./ProfilePhoto.astro";
 
 const exploring = ["Web Development", "DevOps", "Self-hosting"];
 
@@ -64,17 +65,8 @@ const navLinks = [
     </div>
 
     <!-- Right: photo -->
-    <div class="photo-wrapper shrink-0">
-      <div class="photo-ring">
-        <img
-          src="/profile1.png"
-          alt="Bagas"
-          class="photo-img"
-          width="280"
-          height="280"
-        />
-      </div>
-      <div class="photo-glow"></div>
+    <div class="hidden shrink-0 lg:flex">
+      <ProfilePhoto />
     </div>
   </div>
 </section>
@@ -111,58 +103,6 @@ const navLinks = [
   .hero-body.visible {
     opacity: 1;
     transform: translateY(0);
-  }
-
-  .photo-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .photo-ring {
-    position: relative;
-    z-index: 1;
-    padding: 3px;
-    border-radius: 1.25rem;
-    background: linear-gradient(135deg, var(--eva-panel), var(--eva-green));
-  }
-
-  .photo-img {
-    display: block;
-    width: 280px;
-    height: 280px;
-    border-radius: 1rem;
-    object-fit: cover;
-    object-position: top center;
-    background-color: var(--eva-void);
-  }
-
-  .photo-glow {
-    position: absolute;
-    inset: -24px;
-    border-radius: 50%;
-    background: radial-gradient(
-      ellipse at center,
-      var(--eva-orange) 0%,
-      transparent 70%
-    );
-    opacity: 0.12;
-    filter: blur(24px);
-    z-index: 0;
-    animation: pulse-glow 4s ease-in-out infinite;
-  }
-
-  @keyframes pulse-glow {
-    0%,
-    100% {
-      opacity: 0.15;
-      transform: scale(1);
-    }
-    50% {
-      opacity: 0.3;
-      transform: scale(1.08);
-    }
   }
 
   @keyframes blink {

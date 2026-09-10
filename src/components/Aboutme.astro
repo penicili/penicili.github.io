@@ -1,4 +1,6 @@
 ---
+import ProfilePhoto from "./ProfilePhoto.astro";
+
 const techStack: Record<string, string[]> = {
   "Web Dev": ["Laravel", "Express", "FastAPI"],
   DevOps: ["Docker", "Ansible", "Jenkins", "Kubernetes", "ArgoCD"],
@@ -21,7 +23,18 @@ const techStack: Record<string, string[]> = {
       >
         // about me
       </p>
-      <h2 class="mb-8 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+      <div class="mb-8 flex items-center justify-between gap-4 lg:hidden">
+        <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+          Hello!
+        </h2>
+        <div class="w-24 shrink-0 sm:w-28">
+          <ProfilePhoto />
+        </div>
+      </div>
+
+      <h2
+        class="mb-8 hidden text-4xl font-bold tracking-tight text-white sm:text-5xl lg:block"
+      >
         Hello!
       </h2>
 
