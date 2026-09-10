@@ -1,6 +1,6 @@
 ---
 import HeroTyping from "./HeroTyping.tsx";
-import ProfilePhoto from "./ProfilePhoto.astro";
+import ProfilePhoto from "./ProfilePhoto.tsx";
 
 const exploring = ["Web Development", "DevOps", "Self-hosting"];
 
@@ -20,13 +20,13 @@ const navLinks = [
     class="content relative z-10 flex w-full max-w-5xl flex-col items-center gap-16 lg:flex-row lg:items-center lg:gap-0"
   >
     <!-- Left: text -->
-    <div class="w-full lg:w-1/2">
+    <div class="w-full lg:w-3/5">
       <HeroTyping client:load />
 
       <!-- Bio, tags, nav — disembunyikan sampai headline selesai diketik -->
       <div id="hero-body" class="hero-body">
         <p class="mb-10 max-w-xl text-lg leading-relaxed text-(--eva-muted)">
-          I tinker with homelab, ship small projects and document what I learn.
+          Building with code, containers, and curiosity.
         </p>
 
         <div class="mb-12">
@@ -65,8 +65,8 @@ const navLinks = [
     </div>
 
     <!-- Right: photo -->
-    <div class="hidden w-full justify-end lg:flex lg:w-1/2">
-      <ProfilePhoto />
+    <div class="hidden w-full justify-end lg:flex lg:w-2/5">
+      <ProfilePhoto client:load />
     </div>
   </div>
 </section>
@@ -95,6 +95,12 @@ const navLinks = [
   @media (min-width: 640px) {
     :global(.name-wrap) {
       min-height: 1.3em;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    :global(.name-wrap) {
+      white-space: nowrap;
     }
   }
 

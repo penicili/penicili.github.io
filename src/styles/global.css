@@ -3,11 +3,13 @@
 :root {
   --eva-void: #000000;
   --eva-panel: #765899;
+  --eva-panel-deep: #5b456f;
   --eva-panel-soft: #b797db;
   --eva-violet: #765899;
   --eva-purple: #b797db;
   --eva-green: #41bb42;
   --eva-orange: #e8790c;
+  --eva-red: #8f1d2c;
   --eva-ink: #ffffff;
   --eva-muted: #b797db;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-const tagline = 'Building to learn, learning to build';
+const tagline = 'cat /etc/motd';
 const firstLine = "Hi, I'm";
 const names = ['Bagas', 'Katon Bagaskoro'];
 
@@ -88,15 +88,18 @@ export default function HeroTyping() {
     };
 
     later(() => {
-      typeText(firstLine, setFirstLineText, 75, () => {
+      typeText(tagline, setTaglineText, 38, () => {
         later(() => {
-          typeText(names[0], updateName, 110, () => {
-            later(revealBody, 200);
-            cycleNames();
+          typeText(firstLine, setFirstLineText, 75, () => {
+            later(() => {
+              typeText(names[0], updateName, 110, () => {
+                later(revealBody, 200);
+                cycleNames();
+              });
+            }, 150);
           });
         }, 150);
       });
-      typeText(tagline, setTaglineText, 38);
     }, 700);
 
     return () => timers.forEach((timer) => window.clearTimeout(timer));

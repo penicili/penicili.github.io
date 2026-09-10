@@ -1,5 +1,5 @@
 ---
-import ProfilePhoto from "./ProfilePhoto.astro";
+import ProfilePhoto from "./ProfilePhoto.tsx";
 
 const techStack: Record<string, string[]> = {
   "Web Dev": ["Laravel", "Express", "FastAPI"],
@@ -19,16 +19,16 @@ const techStack: Record<string, string[]> = {
     <!-- Left: bio -->
     <div class="flex-1">
       <p
-        class="mb-4 font-mono text-xs font-medium uppercase tracking-widest text-zinc-500"
+        class="mb-4 font-mono text-xs font-medium tracking-widest text-zinc-500"
       >
-        // about me
+        $ whoami
       </p>
       <div class="mb-8 flex items-center justify-between gap-4 lg:hidden">
         <h2 class="text-4xl font-bold tracking-tight text-white sm:text-5xl">
           Hello!
         </h2>
         <div class="w-24 shrink-0 sm:w-28">
-          <ProfilePhoto />
+          <ProfilePhoto client:load />
         </div>
       </div>
 
