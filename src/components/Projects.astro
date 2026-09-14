@@ -4,7 +4,7 @@ type Project = {
   slug: string;
   description: string;
   tags: string[];
-  github: string;
+  github: string | null;
   demo: string | null;
   image?: string;
 };
@@ -39,13 +39,13 @@ const projects: Project[] = [
     demo: "https://nightnetwork-dev.netlify.app/",
   },
   {
-    title: "Flask shortlink",
-    slug: "flask-shortlink",
+    title: "weather app react",
+    slug: "some-weather-react",
     description:
-      "A Flask-based URL shortener provisioned on AWS with Terraform, exploring infrastructure as code and cloud deployment.",
-    tags: ["Python", "Flask", "AWS", "Terraform"],
-    github: "https://github.com/penicili/cloudinfra-proj",
-    demo: null,
+      "Simple React App that fetches openmeteo API, built to practice react",
+    tags: ["React", "Javascript"],
+    github: null,
+    demo: "https://reaksi-weatherapp.vercel.app/",
   },
   {
     title: "Auth Service",
