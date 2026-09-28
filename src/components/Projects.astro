@@ -1,97 +1,6 @@
 ---
-type Project = {
-  title: string;
-  slug: string;
-  description: string;
-  tags: string[];
-  github: string | null;
-  demo: string | null;
-  image?: string;
-};
-
-const projects: Project[] = [
-  {
-    title: "CTF Proxmoxer",
-    slug: "ctf-proxmoxer",
-    description:
-      "A FastAPI backend that integrates Proxmox VE with Ansible to automate the provisioning and management of CTF virtual machines.",
-    tags: ["Python", "FastAPI", "Ansible", "Proxmox"],
-    image: "/proxmoxer.png",
-    github: "https://github.com/penicili/ctf-proxmoxer",
-    demo: null,
-  },
-  {
-    title: "MyShortlink",
-    slug: "myshortlink",
-    description:
-      "A lightweight URL-shortening API and deployment exercise focused on CI/CD pipelines and Kubernetes.",
-    tags: ["Kubernetes", "Jenkins", "GitHub Actions", "ArgoCD", "Backstage"],
-    github: "https://github.com/penicili/myshortlink",
-    demo: null,
-  },
-  {
-    title: "HRIS",
-    slug: "some-hris-anu",
-    description: "[Work In Progress] HRIS web app, developed to practice TS and CI/CD",
-    tags: ["TypeScript", "Express.JS", "Github Actions", "ArgoCD"],
-    github: "https://github.com/penicili/hris-backend",
-    demo: null
-  },
-  {
-    title: "Nightnetwork",
-    slug: "nightnetwork",
-    description:
-      "A CMS-backed landing and store site for a Minecraft server, built with Astro and deployed on Netlify.",
-    tags: ["Astro", "Netlify"],
-    github: "https://github.com/night-network-mc/nightnetwork-landing",
-    demo: "https://nightnetwork-dev.netlify.app/",
-  },
-  {
-    title: "weather app react",
-    slug: "some-weather-react",
-    description:
-      "Simple React App that fetches openmeteo API, built to practice react",
-    tags: ["React", "Javascript"],
-    github: null,
-    demo: "https://weatherreact.hibagas.my.id/",
-    image: "/weather.png",
-  },
-  {
-    title: "habituals",
-    slug: "react-habit-tracker",
-    description: "Simple habit tracker app, built to practice react",
-    tags: ["React", "Javascript"],
-    github: null,
-    demo: "https://habituals.hibagas.my.id/",
-  },
-  {
-    title: "Auth Service",
-    slug: "auth-service",
-    description:
-      "A TypeScript authentication service built with Express and MongoDB.",
-    tags: ["Express", "MongoDB", "TypeScript"],
-    github: "https://github.com/penicili/auth-service/",
-    demo: null,
-  },
-  {
-    title: "Learning Analytics Dashboard",
-    slug: "learning-analytics-dashboard",
-    description:
-      "A FastAPI backend for a learning analytics dashboard, developed as part of my capstone project.",
-    tags: ["Python", "FastAPI"],
-    github: "https://github.com/penicili/capstone-backend",
-    demo: null,
-  },
-  {
-    title: "Freshleaf Laundry",
-    slug: "freshleaf-laundry",
-    description:
-      "A Laravel website for Freshleaf Laundry, created to present the business and its services online.",
-    tags: ["Laravel"],
-    github: "https://github.com/FreshLeaf-Laundry/FreshLeaf",
-    demo: null,
-  },
-];
+import { projects } from "../data/projects";
+import "../styles/projects.css";
 ---
 
 <section id="projects" class="relative flex justify-center px-6 py-28">
@@ -122,16 +31,52 @@ const projects: Project[] = [
               </span>
             </div>
 
-            {project.image && (
-              <div class="project-card__media">
-                <a
-                  href={project.image}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Open ${project.title} preview in a new tab`}
-                >
-                  <img src={project.image} alt={`${project.title} preview`} />
-                </a>
+            {project.images && project.images.length > 0 && (
+              <div class="project-card__media" data-carousel>
+                <div class="project-card__media-track">
+                  {project.images.map((img, imgIndex) => (
+                    <a
+                      href={img}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open ${project.title} preview ${imgIndex + 1} in a new tab`}
+                      class="project-card__media-slide"
+                    >
+                      <img src={img} alt={`${project.title} preview ${imgIndex + 1}`} />
+                    </a>
+                  ))}
+                </div>
+                {project.images.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      class="project-card__media-nav project-card__media-nav--prev"
+                      aria-label="Previous image"
+                    >
+                      <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <button
+                      type="button"
+                      class="project-card__media-nav project-card__media-nav--next"
+                      aria-label="Next image"
+                    >
+                      <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                    <div class="project-card__media-dots">
+                      {project.images.map((_, dotIndex) => (
+                        <button
+                          type="button"
+                          class="project-card__media-dot"
+                          aria-label={`Go to image ${dotIndex + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
             )}
 
@@ -185,143 +130,33 @@ const projects: Project[] = [
   </div>
 </section>
 
-<style>
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1rem;
-  }
+<script>
+  document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((carousel) => {
+    const track = carousel.querySelector<HTMLElement>(".project-card__media-track");
+    const slides = carousel.querySelectorAll<HTMLElement>(".project-card__media-slide");
+    const prevBtn = carousel.querySelector<HTMLButtonElement>(".project-card__media-nav--prev");
+    const nextBtn = carousel.querySelector<HTMLButtonElement>(".project-card__media-nav--next");
+    const dots = carousel.querySelectorAll<HTMLButtonElement>(".project-card__media-dot");
 
-  .project-card {
-    display: flex;
-    min-height: 22rem;
-    flex-direction: column;
-    overflow: hidden;
-    border: 1px solid rgb(118 88 153 / 0.55);
-    border-radius: 0.85rem;
-    background: linear-gradient(
-      145deg,
-      rgb(118 88 153 / 0.22),
-      rgb(0 0 0 / 0.96)
-    );
-    transition:
-      border-color 0.25s ease,
-      transform 0.25s ease,
-      background 0.25s ease;
-  }
+    if (!track || slides.length === 0) return;
 
-  .project-card:hover {
-    border-color: rgb(232 121 12 / 0.85);
-    background: linear-gradient(
-      145deg,
-      rgb(232 121 12 / 0.15),
-      rgb(0 0 0 / 0.98)
-    );
-    transform: translateY(-0.25rem);
-  }
+    const trackEl: HTMLElement = track;
+    let current = 0;
 
-  .project-card--featured {
-    grid-row: span 2;
-    min-height: 45rem;
-  }
-
-  .project-card__chrome {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    border-bottom: 1px solid rgb(63 63 70 / 0.75);
-    background: rgb(118 88 153 / 0.24);
-    padding: 0.8rem 1rem;
-  }
-
-  .project-card__body {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1.5rem;
-  }
-
-  .project-card__media {
-    overflow: hidden;
-    aspect-ratio: 16 / 7;
-    border-bottom: 1px solid rgb(63 63 70 / 0.75);
-    background: #000000;
-  }
-
-  .project-card__media img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-  }
-
-  .project-card--featured .project-card__media {
-    aspect-ratio: 16 / 9;
-  }
-
-  .project-card h3 {
-    margin-bottom: 0.75rem;
-    color: var(--eva-ink);
-    font-size: 1.45rem;
-    font-weight: 600;
-  }
-
-  .project-card--featured h3 {
-    max-width: 18rem;
-    font-size: clamp(2rem, 4vw, 3rem);
-    line-height: 1.1;
-  }
-
-  .project-card p {
-    max-width: 34rem;
-    color: var(--eva-muted);
-    font-size: 0.9rem;
-    line-height: 1.7;
-  }
-
-  .project-card__links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.25rem;
-    border-top: 1px solid rgb(63 63 70 / 0.75);
-    padding-top: 1rem;
-    font-size: 0.82rem;
-  }
-
-  .project-card__links a {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--eva-muted);
-    transition: color 0.2s ease;
-  }
-
-  .project-card__links a:hover {
-    color: var(--eva-green);
-  }
-
-  @media (max-width: 640px) {
-    .projects-grid {
-      display: flex;
-      overflow-x: auto;
-      gap: 1rem;
-      padding: 0.25rem 0.25rem 1rem;
-      scroll-snap-type: x mandatory;
-      scrollbar-color: var(--eva-green) rgb(63 63 70 / 0.5);
-      scrollbar-width: thin;
+    function goTo(index: number) {
+      current = (index + slides.length) % slides.length;
+      trackEl.style.transform = `translateX(-${current * 100}%)`;
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("project-card__media-dot--active", i === current);
+      });
     }
 
-    .project-card {
-      flex: 0 0 82vw;
-      min-height: 30rem;
-      scroll-snap-align: start;
-    }
+    prevBtn?.addEventListener("click", () => goTo(current - 1));
+    nextBtn?.addEventListener("click", () => goTo(current + 1));
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => goTo(i));
+    });
 
-    .project-card--featured {
-      grid-row: auto;
-      min-height: 30rem;
-    }
-  }
-</style>
+    goTo(0);
+  });
+</script>
