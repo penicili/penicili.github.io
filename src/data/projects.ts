@@ -60,6 +60,7 @@ export const projects: Project[] = [
     slug: "react-habit-tracker",
     description: "Simple habit tracker app, built to practice react",
     tags: ["React", "Javascript"],
+    images: ["/projects/habituals/habituals.png", "/projects/habituals/habitualscreate.png", "/projects/habituals/habitualsstats.png"],
     github: null,
     demo: "https://habituals.hibagas.my.id/",
   },

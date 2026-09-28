@@ -13,5 +13,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   }
 });
-site: 'https://penicili.github.io'
+site: 'https://hibagas.my.id'
 base: '/'

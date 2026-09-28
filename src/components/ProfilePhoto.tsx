@@ -36,16 +36,6 @@ export default function ProfilePhoto() {
         />
       </span>
       <span className="photo-glow" />
-      <span className="photo-code-window" aria-label="Bagas in binary">
-        <span className="photo-code-track" aria-hidden="true">
-          <span className="photo-code">
-            0110001001100001011001110110000101110011
-          </span>
-          <span className="photo-code">
-            0110001001100001011001110110000101110011
-          </span>
-        </span>
-      </span>
     </div>
   );
 }
