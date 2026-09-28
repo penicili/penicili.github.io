@@ -42,6 +42,7 @@ export const projects: Project[] = [
     description:
       "A CMS-backed landing and store site for a Minecraft server, built with Astro and deployed on Netlify.",
     tags: ["Astro", "Netlify"],
+    images: ["/projects/nightnewtork/nightnetwork-guides.png", "/projects/nightnewtork/nightnetwork-guidesview.png", "/projects/nightnewtork/nightnetwork-vip.png"],
     github: "https://github.com/night-network-mc/nightnetwork-landing",
     demo: "https://nightnetwork-dev.netlify.app/",
   },
