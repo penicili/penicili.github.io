@@ -13,7 +13,7 @@ export const projects: Project[] = [
     title: "CTF Proxmoxer",
     slug: "ctf-proxmoxer",
     description:
-      "A platform for automated CTF challenge deployment, using FastAPI, Proxmox VE, and Ansible to provision and manage challenge infrastructure as code.",
+      "A platform for automated CTF challenge deployment, using FastAPI, Proxmox VE, and Ansible to provision and manage challenge using infrastructure as code.",
     tags: ["Python", "FastAPI", "Ansible", "Proxmox"],
     images: ["/projects/ctf-proxmoxer/proxmoxer.png", "/projects/ctf-proxmoxer/ctfd-plugin.png", "/projects/ctf-proxmoxer/ctfd-plugin-2.png"],
     github: "https://github.com/penicili/ctf-proxmoxer",
