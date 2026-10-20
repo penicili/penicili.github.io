@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import { projects } from "../data/projects";
 import "../styles/projects.css";
 ---
@@ -36,13 +37,16 @@ import "../styles/projects.css";
                 <div class="project-card__media-track">
                   {project.images.map((img, imgIndex) => (
                     <a
-                      href={img}
+                      href={img.src}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Open ${project.title} preview ${imgIndex + 1} in a new tab`}
                       class="project-card__media-slide"
                     >
-                      <img src={img} alt={`${project.title} preview ${imgIndex + 1}`} />
+                      <Image
+                        src={img}
+                        alt={`${project.title} preview ${imgIndex + 1}`}
+                      />
                     </a>
                   ))}
                 </div>

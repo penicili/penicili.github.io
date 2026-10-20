@@ -1,3 +1,15 @@
+import type { ImageMetadata } from "astro";
+import ctfProxmoxer from "../assets/projects/ctf-proxmoxer/proxmoxer.png";
+import ctfPlugin from "../assets/projects/ctf-proxmoxer/ctfd-plugin.png";
+import ctfPluginTwo from "../assets/projects/ctf-proxmoxer/ctfd-plugin-2.png";
+import nightnetwork from "../assets/projects/nightnewtork/nightnetwork.png";
+import nightnetworkGuides from "../assets/projects/nightnewtork/nightnetwork-guides.png";
+import nightnetworkGuidesView from "../assets/projects/nightnewtork/nightnetwork-guidesview.png";
+import weather from "../assets/projects/weather-react/weather.png";
+import habituals from "../assets/projects/habituals/habituals.png";
+import habitualsCreate from "../assets/projects/habituals/habitualscreate.png";
+import habitualsStats from "../assets/projects/habituals/habitualsstats.png";
+
 export type Project = {
   title: string;
   slug: string;
@@ -5,7 +17,7 @@ export type Project = {
   tags: string[];
   github: string | null;
   demo: string | null;
-  images?: string[];
+  images?: ImageMetadata[];
 };
 
 export const projects: Project[] = [
@@ -15,7 +27,11 @@ export const projects: Project[] = [
     description:
       "A platform for automated CTF challenge deployment, using FastAPI, Proxmox VE, and Ansible to provision and manage challenge using infrastructure as code.",
     tags: ["Python", "FastAPI", "Ansible", "Proxmox"],
-    images: ["/projects/ctf-proxmoxer/proxmoxer.png", "/projects/ctf-proxmoxer/ctfd-plugin.png", "/projects/ctf-proxmoxer/ctfd-plugin-2.png"],
+    images: [
+      ctfProxmoxer,
+      ctfPlugin,
+      ctfPluginTwo,
+    ],
     github: "https://github.com/penicili/ctf-proxmoxer",
     demo: null,
   },
@@ -42,7 +58,11 @@ export const projects: Project[] = [
     description:
       "A CMS-backed landing and store site for a Minecraft server, built with Astro and deployed on Netlify.",
     tags: ["Astro", "Netlify"],
-    images: ["/projects/nightnewtork/nightnetwork.png", "/projects/nightnewtork/nightnetwork-guides.png", "/projects/nightnewtork/nightnetwork-guidesview.png"],
+    images: [
+      nightnetwork,
+      nightnetworkGuides,
+      nightnetworkGuidesView,
+    ],
     github: "https://github.com/night-network-mc/nightnetwork-landing",
     demo: "https://nightnetwork-dev.netlify.app/",
   },
@@ -54,14 +74,18 @@ export const projects: Project[] = [
     tags: ["React", "Javascript"],
     github: null,
     demo: "https://weatherreact.hibagas.my.id/",
-    images: ["/projects/weather-react/weather.png"],
+    images: [weather],
   },
   {
     title: "habituals",
     slug: "react-habit-tracker",
     description: "Simple habit tracker app, built to practice react",
     tags: ["React", "Javascript"],
-    images: ["/projects/habituals/habituals.png", "/projects/habituals/habitualscreate.png", "/projects/habituals/habitualsstats.png"],
+    images: [
+      habituals,
+      habitualsCreate,
+      habitualsStats,
+    ],
     github: null,
     demo: "https://habituals.hibagas.my.id/",
   },
