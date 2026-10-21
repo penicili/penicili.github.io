@@ -1,105 +1,107 @@
+import type { SyntheticEvent } from "react";
+import { useChat } from "../hooks/useChat";
 import { useState } from "react";
-import type { FormEvent } from "react";
-
-type Message = {
-  role: "user" | "model";
-  text: string;
-};
-
-const initialMessage: Message = {
-  role: "model",
-  text: "Hi! Ask me about Katon's background, skills, or projects.",
-};
 
 export const Chat = () => {
-  const [messages, setMessages] = useState<Message[]>([initialMessage]);
-  const [input, setInput] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const {
+    messages,
+    input,
+    isLoading,
+    setInput,
+    submitMessage,
+  } = useChat();
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  function handleSubmit(event: SyntheticEvent<HTMLFormElement>) {
     event.preventDefault();
-    const text = input.trim();
-    if (!text || isLoading) return;
-
-    const nextMessages = [...messages, { role: "user" as const, text }];
-    setMessages(nextMessages);
-    setInput("");
-    setIsLoading(true);
-
-    try {
-      const response = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages: nextMessages.slice(-12) }),
-      });
-      const result = (await response.json()) as { text?: string; error?: string };
-
-      if (!response.ok || !result.text) {
-        throw new Error(result.error || "Chat request failed.");
-      }
-
-      setMessages((current) => [
-        ...current,
-        { role: "model", text: result.text! },
-      ]);
-    } catch (error) {
-      setMessages((current) => [
-        ...current,
-        {
-          role: "model",
-          text: error instanceof Error ? error.message : "Something went wrong.",
-        },
-      ]);
-    } finally {
-      setIsLoading(false);
-    }
+    void submitMessage(input);
   }
 
   return (
-    <section id="chat" className="relative flex justify-center px-6 py-20">
-      <div className="w-full max-w-5xl">
-        <p className="mb-4 font-mono text-xs uppercase tracking-widest text-zinc-500">
-          // ask about my work
-        </p>
-        <div className="rounded-xl border border-(--eva-panel) bg-black/30 p-4">
-          <div className="mb-4 max-h-80 space-y-3 overflow-y-auto pr-2">
+    <div id="chat" className="fixed bottom-6 right-6 z-50">
+      {isOpen && (
+        <section
+          aria-label="Chat with Katon's CV"
+          className="mb-4 w-[min(24rem,calc(100vw-3rem))] overflow-hidden rounded-2xl border border-(--eva-panel)/70 bg-[#100d16] shadow-2xl shadow-black/60"
+        >
+          <div className="flex items-center justify-between border-b border-(--eva-panel)/50 bg-[#1d1628] px-4 py-3">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-widest text-(--eva-orange)">
+                // ask about my work
+              </p>
+              <h2 className="mt-1 font-semibold text-(--eva-ink)">Talk to my CV</h2>
+            </div>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close chat"
+              className="rounded-md px-2 py-1 text-xl leading-none text-(--eva-muted) transition hover:bg-(--eva-panel)/30 hover:text-(--eva-ink)"
+            >
+              ×
+            </button>
+          </div>
+
+          <div className="max-h-80 space-y-3 overflow-y-auto p-4">
             {messages.map((message, index) => (
               <div
                 key={`${message.role}-${index}`}
                 className={`max-w-[90%] rounded-lg px-4 py-3 text-sm leading-relaxed ${
                   message.role === "user"
-                    ? "ml-auto bg-(--eva-green)/15 text-zinc-200"
-                    : "bg-zinc-900 text-zinc-400"
+                    ? "ml-auto border border-(--eva-orange)/30 bg-(--eva-orange)/15 text-[#fff1e5]"
+                    : "border border-(--eva-panel)/30 bg-[#211a2c] text-(--eva-muted)"
                 }`}
               >
                 {message.text}
               </div>
             ))}
             {isLoading && (
-              <div className="max-w-[90%] rounded-lg bg-zinc-900 px-4 py-3 text-sm text-zinc-500">
+              <div className="max-w-[90%] rounded-lg border border-(--eva-panel)/30 bg-[#211a2c] px-4 py-3 text-sm text-(--eva-muted)">
                 Thinking...
               </div>
             )}
           </div>
-          <form className="flex gap-2" onSubmit={handleSubmit}>
+
+          <form className="flex gap-2 border-t border-(--eva-panel)/50 bg-[#17121f] p-4" onSubmit={handleSubmit}>
             <input
               value={input}
               onChange={(event) => setInput(event.target.value)}
               placeholder="Ask about projects or experience..."
               aria-label="Ask about Katon's CV and projects"
-              className="min-w-0 flex-1 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 outline-none placeholder:text-zinc-600 focus:border-(--eva-green)"
+              className="min-w-0 flex-1 rounded-lg border border-(--eva-panel)/60 bg-[#0a080d] px-3 py-2 text-sm text-(--eva-ink) outline-none placeholder:text-(--eva-muted)/60 focus:border-(--eva-orange)"
               maxLength={2000}
             />
             <button
               type="submit"
               disabled={isLoading || !input.trim()}
-              className="rounded-lg bg-(--eva-green) px-4 py-2 text-sm font-medium text-black transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-lg bg-(--eva-orange) px-4 py-2 text-sm font-semibold text-black transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Send
             </button>
           </form>
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+
+      <button
+        type="button"
+        onClick={() => setIsOpen((open) => !open)}
+        aria-expanded={isOpen}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+        className="ml-auto flex h-14 w-14 items-center justify-center rounded-full border-2 border-(--eva-green) bg-(--eva-panel) text-(--eva-green) shadow-lg shadow-black/40 transition hover:scale-105 hover:border-(--eva-orange) hover:text-(--eva-orange)"
+      >
+        <svg
+          aria-hidden="true"
+          className="h-7 w-7"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.8"
+          viewBox="0 0 24 24"
+        >
+          <path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8.2 8.2 0 0 1-3.3-.7L4 20l1.7-4.2A7.4 7.4 0 0 1 5 11.5 7.5 7.5 0 0 1 12.5 4 7.5 7.5 0 0 1 20 11.5Z" />
+          <path d="M8.5 11.5h.01M12.5 11.5h.01M16.5 11.5h.01" strokeWidth="2.4" />
+        </svg>
+      </button>
+    </div>
   );
 };
