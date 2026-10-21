@@ -14,4 +14,4 @@ COPY --from=build /app ./
 
 EXPOSE 4321
 
-CMD ["npm", "run", "preview", "--", "--host", "0.0.0.0", "--port", "4321"]
+CMD ["node", "./dist/server/entry.mjs"]
