@@ -2,16 +2,7 @@
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { Image } from "astro:assets";
-import ctfProxmoxer from "../assets/projects/ctf-proxmoxer/proxmoxer.png";
-import ctfPlugin from "../assets/projects/ctf-proxmoxer/ctfd-plugin.png";
-import ctfPluginTwo from "../assets/projects/ctf-proxmoxer/ctfd-plugin-2.png";
-import nightnetwork from "../assets/projects/nightnewtork/nightnetwork.png";
-import nightnetworkGuides from "../assets/projects/nightnewtork/nightnetwork-guides.png";
-import nightnetworkGuidesView from "../assets/projects/nightnewtork/nightnetwork-guidesview.png";
-import weather from "../assets/projects/weather-react/weather.png";
-import habituals from "../assets/projects/habituals/habituals.png";
-import habitualsCreate from "../assets/projects/habituals/habitualscreate.png";
-import habitualsStats from "../assets/projects/habituals/habitualsstats.png";
+import type { ImageMetadata } from "astro";
 import "../styles/projects.css";
 
 type Project = {
@@ -28,18 +19,16 @@ const projects = JSON.parse(
   readFileSync(resolve(process.cwd(), "public/projects.json"), "utf8"),
 ) as Project[];
 
-const imageAssets = {
-  "/projects/ctf-proxmoxer/proxmoxer.png": ctfProxmoxer,
-  "/projects/ctf-proxmoxer/ctfd-plugin.png": ctfPlugin,
-  "/projects/ctf-proxmoxer/ctfd-plugin-2.png": ctfPluginTwo,
-  "/projects/nightnewtork/nightnetwork.png": nightnetwork,
-  "/projects/nightnewtork/nightnetwork-guides.png": nightnetworkGuides,
-  "/projects/nightnewtork/nightnetwork-guidesview.png": nightnetworkGuidesView,
-  "/projects/weather-react/weather.png": weather,
-  "/projects/habituals/habituals.png": habituals,
-  "/projects/habituals/habitualscreate.png": habitualsCreate,
-  "/projects/habituals/habitualsstats.png": habitualsStats,
-};
+const imageAssets = import.meta.glob<ImageMetadata>(
+  "../assets/projects/**/*.{png,jpg,jpeg,webp}",
+  {
+    eager: true,
+    import: "default",
+  },
+);
+
+const getImageAsset = (imagePath: string) =>
+  imageAssets[`../assets${imagePath}`];
 ---
 
 <section id="projects" class="relative flex justify-center px-6 py-28">
@@ -75,8 +64,10 @@ const imageAssets = {
                 <div class="project-card__media-track">
                   {project.images.map((img, imgIndex) => (
                     (() => {
-                      const image = imageAssets[img as keyof typeof imageAssets];
-                      if (!image) return null;
+                      const image = getImageAsset(img);
+                      if (!image) {
+                        throw new Error(`Project image asset not found: ${img}`);
+                      }
 
                       return (
                     <a

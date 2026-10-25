@@ -13,6 +13,18 @@
     "demo": null
   },
   {
+    "title": "Nguwis",
+    "slug": "nguwis",
+    "description": "Simple quiz generator to generate moodle friendly quiz files, currently supports aiken file format.",
+    "tags": ["NextJS", "TypeScript", "NodeJs"],
+    "images": [
+      "/projects/nguwis/QuizApp.png",
+      "/projects/nguwis/QuizApp-create.png"
+    ],
+    "github": "https://github.com/penicili/quiz-app",
+    "demo": "https://nguwis.hibagas.my.id/"
+  },
+  {
     "title": "MyShortlink",
     "slug": "myshortlink",
     "description": "A lightweight URL-shortening API and deployment exercise focused on CI/CD pipelines and Kubernetes.",
