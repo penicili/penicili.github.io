@@ -15,7 +15,7 @@
   {
     "title": "Nguwis",
     "slug": "nguwis",
-    "description": "Simple quiz generator to generate moodle friendly quiz files, currently supports aiken file format.",
+    "description": "Simple quiz generator to create moodle friendly quiz files, currently supports aiken and moodle xml (multiple choice) file format, supports generate quiz from PDF using google gemini.",
     "tags": ["NextJS", "TypeScript", "NodeJs"],
     "images": [
       "/projects/nguwis/QuizApp.png",
